@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grand{
+            width:500px;
+            height:700px;
+            margin:auto;
+            padding:20px
+
+        }
+        #parent{
+            display:flex;
+            justify-content: space-evenly;
+
+        }
+        .box1{
+            width: 100px;
+            height: 50px;
+        
+        }
+        h1{
+            text-align: center;
+        }
+        #result{
+            width:230px ;
+            height:80px;
+            margin-left: 130px;
+            margin-bottom: 20px;  
+        }
+        #grid{
+            width: 50%;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 30px;
+            margin: auto;
+        }
+        #grid>button{
+            width:60px;
+            height:60px;
+        }
+        .orange{
+            background-color: #FF6600;
+        }
+        .green{
+            background-color: #668100;
+        }
+        #grid>button:nth-child(10)
+        {
+            background-color: #810065;
+            grid-column: 2;
+            
+        }
+        #enter{
+            background-color: black;
+            color: white;
+            width:230px;
+            height:60px;
+            margin-top: 20px;
+            margin-left: 140px;
+        }
+        input{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="grand">
+        <div id="parent">
+            <div>
+                <input type="number" class="box1" style="background-color: red;" id="min" value=43></input>
+                <h1>MIN</h1>
+            </div>
+            <div>
+                <input type="number" class="box1" style="background-color: green;" id="max" value=2019></input>
+                <h1>MAX</h1>
+            </div>
+        </div>
+        <div>
+            <h1>Score</h1>
+            <input type="number" id="result" style="background-color: grey;"></input>
+        </div>
+        <div id="grid">
+            <button class="green">1</button>
+            <button class="orange">2</button>
+            <button class="green">3</button>
+            <button class="orange">4</button>
+            <button class="orange">5</button>
+            <button class="orange">6</button>
+            <button class="green">7</button>
+            <button class="orange">8</button>
+            <button class="green">9</button>
+            <button>0</button>
+        </div>
+        <div>
+            <button id="enter">ENTER</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    let min = document.getElementById("min");
+    let max = document.getElementById("max");
+    let result = document.getElementById("result");
+
+
+    let key = document.querySelectorAll("#grid > button")
+
+    for(let i=0; i<key.length; i++)
+    {
+        key[i].addEventListener("click", function(){
+            result.value += key[i].innerText;
+        })
+    }
+    
+    document.getElementById("enter").addEventListener("click", function(){
+        if(Number(result.value) < Number(min.value))
+        {
+            min.value = result.value;
+        }
+
+        else if (Number(result.value) > Number(max.value))
+        {
+            max.value = result.value
+        } 
+        
+        result.value ="";
+    })
+    
+</script>
